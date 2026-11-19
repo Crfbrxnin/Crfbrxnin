@@ -48,11 +48,20 @@ def box(x,y,w,h,icon,title,lines=(),extra='',lr=4):
     ls=''.join(f'<div class="ln" style="top:{l}mm;right:{lr}mm"></div>' for l in lines)
     return f'<div class="box" style="left:{x}mm;top:{y}mm;width:{w}mm;height:{h}mm"><div class="hd">{icon}<b>{title}</b></div>{ls}{extra}</div>'
 X,BW=8,104
-back=(box(X,31,BW,15,I_doc,'CNPJ',(11,)) +
- box(X,50,BW,26,I_bank,'CONTAS BANCÁRIAS',(11.5,17.5,23)) +
- box(X,80,BW,30,I_pix,'PIX',(15.5,22),
-     '<div class="sub" style="left:4mm;top:9.3mm">CHAVE</div><div class="qr" style="right:3.5mm;top:3.5mm;width:23mm;height:23mm">QR CODE<br>PIX</div>',lr=31) +
- box(X,114,BW,28,I_note,'OBSERVAÇÕES',(11.5,17.5,23.5)))
+qr=open('qr-pix-cnpj.svg').read()
+lbl='font-size:5.6pt;letter-spacing:.14em;color:#a9a9a9;font-weight:500'
+val='font-weight:700;letter-spacing:-.01em;margin-top:.8mm'
+pix_extra=(f'<div style="position:absolute;left:4mm;top:12mm;width:58mm">'
+ f'<div style="{lbl}">CHAVE PIX · CNPJ</div><div style="{val};font-size:12.5pt">06.301.833/0001-79</div>'
+ f'<div style="{lbl};margin-top:4.2mm">CHAVE PIX · E-MAIL <span style="color:#fff">EU FAÇO PARTE</span></div><div style="{val};font-size:8.4pt">uncaoeufacoparte@gmail.com</div>'
+ f'<div style="font-size:5.6pt;color:#bdbdbd;margin-top:4.6mm;line-height:1.4">Escaneie o QR Code com o<br>aplicativo do seu banco</div></div>'
+ f'<div style="position:absolute;right:3.5mm;top:3.5mm;width:37mm;height:37mm;background:#fff;border-radius:2.6mm;padding:2.2mm">{qr}</div>')
+bank_extra=(f'<div style="position:absolute;left:4mm;top:10.5mm;display:flex;align-items:baseline;gap:4mm">'
+ f'<div style="font-weight:800;font-size:12pt;letter-spacing:-.01em">SICOOB <span style="color:#9a9a9a">756</span></div>'
+ f'<div style="font-size:8pt;font-weight:500">Agência <b>3003</b> &nbsp;·&nbsp; Conta corrente <b>225.923-0</b></div></div>')
+back=(box(X,31,BW,44,I_pix,'PIX',(),pix_extra) +
+ box(X,79,BW,21,I_bank,'DADOS BANCÁRIOS',(),bank_extra) +
+ box(X,104,BW,38,I_note,'OBSERVAÇÕES',(12,18.5,25,31.5)))
 html=f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Envelope Unção</title><style>{css}</style></head><body>
 <section class="page f">{deco_front}<div class="safe"><div class="logo">{logo}</div>
 <h1>Generosidade <span class="amp">&amp;</span><br>Fidelidade</h1>

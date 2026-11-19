@@ -1,5 +1,6 @@
 import base64
 logo=open('uncao_logo.svg').read()
+qr=open('qr-pix-cnpj.svg').read()
 def font(fam,w,f): return f"@font-face{{font-family:'{fam}';font-weight:{w};src:url(data:font/woff2;base64,{base64.b64encode(open('fonts/'+f,'rb').read()).decode()}) format('woff2')}}"
 fonts=font('Archivo Black',400,'archivo-black-latin-400-normal.woff2')+''.join(font('Montserrat',w,f'montserrat-latin-{w}-normal.woff2') for w in (500,700,800))
 W,H=126,156
@@ -28,16 +29,16 @@ body{{font-family:'Montserrat';color:#fff;-webkit-print-color-adjust:exact;print
 .head div{{white-space:nowrap;display:block}}
 .head .o{{color:transparent;-webkit-text-stroke:.3mm #fff}}
 .b .logo{{position:absolute;left:50%;top:6mm;width:17mm;transform:translateX(-50%)}}
-.card{{position:absolute;left:50%;top:33mm;transform:translateX(-50%);width:62mm;background:#f2f2f2;border-radius:5mm;padding:4mm 4.5mm 4.5mm;color:#0a0a0a;text-align:center}}
+.card{{position:absolute;left:50%;top:30mm;transform:translateX(-50%);width:66mm;background:#f2f2f2;border-radius:5mm;padding:4mm 4.5mm 4.5mm;color:#0a0a0a;text-align:center}}
 .card .lb{{font-weight:800;font-size:7.5pt;letter-spacing:.12em}}
 .pill{{border-radius:10mm;height:6mm;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:7pt}}
-.card .pill{{background:#0a0a0a;color:#fff;margin:2mm 0 3mm;font-weight:500;font-size:6.5pt;color:#9a9a9a}}
-.qr{{width:44mm;height:44mm;margin:0 auto;border:.35mm dashed #0a0a0a;border-radius:3mm;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:6.5pt;letter-spacing:.14em;opacity:.55}}
-.bank{{position:absolute;left:0;right:0;top:104mm;text-align:center}}
-.bank .nm{{font-weight:800;font-size:9pt;letter-spacing:.04em}}
+.card .pill{{background:#0a0a0a;color:#fff;margin:1.6mm 0 3mm}} .card .k{{font-weight:800;font-size:11pt;height:7.5mm}} .card .k2{{font-size:7.4pt;margin:1.4mm 0 0}}
+.qr{{width:38mm;height:38mm;margin:0 auto}}
+.bank{{position:absolute;left:0;right:0;top:108mm;text-align:center}}
+.bank .nm{{font-weight:800;font-size:11pt;letter-spacing:.04em}}
 .bank .row{{display:flex;gap:2.5mm;justify-content:center;margin-top:2.5mm}}
-.bank .pill{{background:#f2f2f2;color:#0a0a0a;width:30mm;justify-content:flex-start;padding-left:3.5mm}}
-.how{{position:absolute;left:0;right:0;top:124mm;text-align:center}}
+.bank .pill{{background:#f2f2f2;color:#0a0a0a;width:34mm;justify-content:center;font-weight:500}}
+.how{{position:absolute;left:0;right:0;top:128mm;text-align:center}}
 .how h3{{font-weight:800;font-size:9pt}}
 .how p{{font-weight:500;font-size:6.6pt;line-height:1.45;color:#cfcfcf;margin-top:1.8mm}}
 """
@@ -62,8 +63,9 @@ document.body.dataset.ready=1;});
 html=f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Envelope Unção II</title><style>{css}</style></head><body>
 <section class="page f">{deco_front}<div class="logo">{logo}</div><div class="head">{head}</div></section>
 <section class="page b">{deco_back}<div class="logo">{logo}</div>
-<div class="card"><div class="lb">CHAVE PIX</div><div class="pill">chave pix aqui</div><div class="qr">QR CODE</div></div>
-<div class="bank"><div class="nm">BANCO</div><div class="row"><div class="pill">Agência:</div><div class="pill">Conta:</div></div></div>
+<div class="card"><div class="lb">PIX · CNPJ</div><div class="pill k">06.301.833/0001-79</div><div class="qr">{qr}</div>
+<div class="lb" style="margin-top:3mm;font-size:6pt">OU PELO E-MAIL · EU FAÇO PARTE</div><div class="pill k2">uncaoeufacoparte@gmail.com</div></div>
+<div class="bank"><div class="nm">SICOOB 756</div><div class="row"><div class="pill">Agência: <b>&nbsp;3003</b></div><div class="pill">Conta: <b>&nbsp;225.923-0</b></div></div></div>
 <div class="how"><h3>Como contribuir pelo QR Code?</h3><p>Abra o app do seu banco e entre na área Pix.<br>Toque em “Ler QR Code” e aponte a câmera.<br>Confira os dados e confirme sua oferta.</p></div>
 </section>
 <script>{JS}</script></body></html>"""
