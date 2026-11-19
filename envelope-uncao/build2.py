@@ -42,12 +42,11 @@ body{{font-family:'Montserrat';color:#fff;-webkit-print-color-adjust:exact;print
 .how h3{{font-weight:800;font-size:9pt}}
 .how p{{font-weight:500;font-size:6.6pt;line-height:1.45;color:#cfcfcf;margin-top:1.8mm}}
 """
-deco_front=f'''<svg class="deco" viewBox="0 0 {W} {H}">{burst(120,150,7,19,13,3.4)}<circle cx="120" cy="150" r="5.5" fill="#fff"/>
-{coil(10,-6,9,7,2.2,2.6)}</svg>'''
+deco_front=f'''<svg class="deco" viewBox="0 0 {W} {H}"></svg>'''
 deco_back=f'''<svg class="deco" viewBox="0 0 {W} {H}">
 <path d="M0,0 H{W} V12 L{W/2+8},25 Q{W/2},26.8 {W/2-8},25 L0,12 Z" fill="#1c1c1c"/>
 <path d="M0,12 L{W/2-8},25 Q{W/2},26.8 {W/2+8},25 L{W},12" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width=".3"/>
-{coil(112,-4,6,7,2.2,2.6)}{burst(5,153,6,16,13,3)}<circle cx="5" cy="153" r="4.5" fill="#fff"/></svg>'''
+</svg>'''
 lines=[('Sua',''),('generosidade',''),('é semente','o'),('que Deus',''),('multiplica',''),('e transforma','o'),('vidas!','')]
 head=''.join(f'<div class="fit {c}">{t}</div>' for t,c in lines)
 JS=r"""
