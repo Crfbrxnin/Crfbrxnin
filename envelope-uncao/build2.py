@@ -27,6 +27,7 @@ body{{font-family:'Montserrat';color:#fff;-webkit-print-color-adjust:exact;print
 .f .logo{{position:absolute;left:50%;top:13mm;width:24mm;transform:translateX(-50%)}}
 .head{{position:absolute;left:15mm;right:15mm;top:38mm;font-family:'Archivo Black';text-transform:uppercase;line-height:.9;letter-spacing:-.01em}}
 .head div{{white-space:nowrap;display:block}}
+.head .gap{{margin-bottom:.06em}}
 .head .o{{color:transparent;-webkit-text-stroke:.3mm #fff}}
 .b .logo{{position:absolute;left:50%;top:6mm;width:17mm;transform:translateX(-50%)}}
 .card{{position:absolute;left:50%;top:30mm;transform:translateX(-50%);width:66mm;background:#f2f2f2;border-radius:5mm;padding:4mm 4.5mm 4.5mm;color:#0a0a0a;text-align:center}}
@@ -47,7 +48,7 @@ deco_back=f'''<svg class="deco" viewBox="0 0 {W} {H}">
 <path d="M0,0 H{W} V12 L{W/2+8},25 Q{W/2},26.8 {W/2-8},25 L0,12 Z" fill="#1c1c1c"/>
 <path d="M0,12 L{W/2-8},25 Q{W/2},26.8 {W/2+8},25 L{W},12" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width=".3"/>
 </svg>'''
-lines=[('Sua',''),('generosidade',''),('é semente','o'),('que Deus',''),('multiplica',''),('e transforma','o'),('vidas!','')]
+lines=[('Sua',''),('generosidade,','gap'),('é semente','o'),('que Deus',''),('multiplica',''),('e transforma','o'),('vidas!','')]
 head=''.join(f'<div class="fit {c}">{t}</div>' for t,c in lines)
 JS=r"""
 document.fonts.ready.then(()=>{const box=document.querySelector('.head');const W=box.clientWidth;
